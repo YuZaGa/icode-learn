@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<title>iCode - E-Learn </title>
+	<meta charset="UTF-8">
+	<meta name="description" content="WebUni Education Template">
+	<meta name="keywords" content="webuni, education, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="{% static 'webuni/img/favicon.png' %}" rel="shortcut icon" />
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i"
+		rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'webuni/css/bootstrap.min.css'%}" />
+	<link rel="stylesheet" href="{% static 'webuni/css/font-awesome.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'webuni/css/owl.carousel.css' %}" />
+	<link rel="stylesheet" href="{% static 'webuni/css/style.css'%}" />
+	<link rel="stylesheet" href="{% static 'webuni/css/freelancer.css'%}" />
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+</head>
+
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="/"><img src="{% static 'webuni/img/logox3.png' %}" alt=""></a>
+			<button
+				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+				type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				Menu
+
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item mx-0 mx-lg-1">
+						<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:home' %}">
+							Home</a>
+					</li>
+
+					{% if request.user.profile.is_teacher == True %}
+					<li class="nav-item mx-0 mx-lg-1">
+						<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+							href="{% url 'courses:create_class' %}">Create Classes</a>
+					</li>
+					<li class="nav-item mx-0 mx-lg-1">
+						<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+							href="{% url 'courses:create_subject' %}">
+							Create Subjects</a>
+					</li>
+					<li class="nav-item mx-0 mx-lg-1">
+						<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+							href="{% url 'courses:create_lesson' %}">
+							Create Lesson</a>
+					</li>
+			
+					{% else %}
+					<li class="nav-item mx-0 mx-lg-1">
+						<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+							href="{% url 'courses:about' %}">About</a>
+					</li>
+
+					{% endif %}
+					{% if request.user.is_authenticated %}
+
+					<div class="dropdown show">
+						<a class=" dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-triggeraa" href="#"
+							role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">
+							{{request.user.username}}
+						</a>
+
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<a class="dropdown-item" href="{% url 'users:profile' %}">
+								Profile</a>
+							<a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+						</div>
+					</div>
+					{% else %}
+					<li class="nav-item mx-0 mx-lg-1">
+						<a class="active nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+							href="{% url 'account_login' %}">Login</a>
+					</li>
+					<li class="nav-item mx-0 mx-lg-1">
+						<a class="active nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+							href="{% url 'account_signup' %}">Sign-Up</a>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	{% include 'inc/messages.html' %}
+	{% block content %}
+
+	{% endblock content %}
+
+
+	<!-- footer section -->
+	<footer class="footer-section spad pb-0">
+		<div class="footer-top">
+			<div class="foot"er-warp">
+				<div style="text-align: center;">
+					Copyright &copy; Hi-Pr-Yu <script>
+						document.write(new Date().getFullYear());
+					</script> All rights reserved.
+					<br><br>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+	<!-- footer section end -->
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'webuni/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'webuni/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'webuni/js/mixitup.min.js' %}"></script>
+	<script src="{% static 'webuni/js/circle-progress.min.js' %}"></script>
+	<script src="{% static 'webuni/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'webuni/js/main.js' %}"></script>
+	<script src="{% static 'webuni/js/freelancer.js' %}"></script>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init();
+	</script>
+
+</html>

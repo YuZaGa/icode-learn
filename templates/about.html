@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/4.jpg' %}">
+	<div class="container">
+		<div class="site-breadcrumb">
+			<a href="/">Home</a>
+			<span>
+				About</span>
+		</div>
+	</div>
+</div>
+<!-- Page info end -->
+
+
+<section class="about-us py-5 " id="about-us">
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-6">
+				<h1 class='text-primary'>Welcome! {{ request.user.username|capfirst }}*</h1>
+				<h2>
+					Learn more about us</h2>
+				<hr>
+				<p>We wish to be accessible to everyone preparing for competitive exams, hence we are available on our
+					app, website and YouTube. Exam aspirants can access high quality preparation & practice material,
+					interact with and learn from subject matter experts & fellow students, and boost their preparation
+					by subscribing to Test Series & Live Courses. At Asamkhyeya, we cover a wide variety of exams and
+					video
+					content for exam preparation. We also conduct live sessions, so you can interact and get your doubts
+					solved in real-time. During your course of preparation, Asamkhyeya keeps you updated with all exam
+					related notifications and details.
+				</p>
+				<p>At our heart lies the belief that people prepare better when they prepare together; by questioning,
+					helping & challenging each other. Hence at the very core of our being lies a community of students &
+					expert mentors. Established in the year 2016, Asamkhyeya belongs to Asamkhyeya EduTech Pvt Ltd. We
+					have
+					established & nurtured highly engaging exam-specific communities of students and mentors for SSC,
+					Banking, Railways, Teaching, JEE, GATE, NEET, UPSC, Defense and State level exams. The Asamkhyeya
+					community lets users collectively solve each other’s doubts, and interactively learn and compete
+					with each other through quizzes and mock tests. It gives them access to prep material & previous
+					years papers to score better in their exams.</p>
+				<!-- <button type="button" class="btn btn-primary">Let's Know More</button> -->
+
+			</div>
+			<div class="col-md-6">
+				<img src="http://themebubble.com/demo/marketingpro/wp-content/uploads/2016/10/seo-slide.png " alt="">
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

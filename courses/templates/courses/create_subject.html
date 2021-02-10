@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <h1>Create subject</h1>
+    <form method="post" action="/create/subject" enctype='multipart/form-data'>{% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn mb-4 btn-primary">Create subject</button>
+    </form>
+</div>
+{% endblock %}

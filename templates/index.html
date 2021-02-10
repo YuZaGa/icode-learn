@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Hero section -->
+<section class="hero-section set-bg" data-setbg="{% static 'webuni/img/bgx.png'%}">
+  <div class="container">
+    <div class="hero-text text-white">
+      {% if request.user.is_authenticated %}
+      <h2>Welcome {% if request.user.profile.is_teacher == True %}
+        educator,
+        {% endif %} {{ request.user.username|capfirst }}
+
+
+      </h2>
+      {% else %}
+      <h2>The pathway of courses</h2>
+      {% endif %}
+      <p>iCode is an online platform for teaching programming to beginners by providing them a pathway so that they can learn learn in an easy way through videos at their own pace.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <form method="post" action="{% url 'courses:search_course' %}" class="intro-newslatter"> {% csrf_token %}
+          <input name="search" type="text" placeholder="Search the course">
+          <button type="submit" class="site-btn">Search the course</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero section end -->
+
+<!-- categories section -->
+<section class="categories-section spad">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="kurset">Categories and Classes</h2>
+      <p>Lessons are divided into different categories according to classes and their level. You must register
+        first and then follow the class to which it belongs.</p>
+    </div>
+    <div class="row">
+      {% for cat in category %}
+      <!-- categorie -->
+      <div data-aos="zoom-in" class="col-lg-4 col-md-6">
+        <div class="categorie-item">
+          <div class="ci-thumb set-bg" data-setbg="{{ cat.image.url }}"></div>
+          <div class="ci-text">
+
+            <h5>{{cat.title|capfirst}}</h5>
+
+            <p>{{ cat.description|capfirst }}</p>
+            <span><a class="btn btn-success" href="/courses/{{ cat.id }}">Look at the content</a></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- categories section end -->
+{% if request.user.is_authenticated %}
+{% else %}
+
+{% endif %}
+<!-- course section end -->
+
+{% if request.user.is_authenticated %}
+
+<!-- signup section -->
+{% if request.user.profile.is_teacher == True %}
+<div class="container">
+  <h1 class="text-center">Your account has contributor access</h1><br>
+  <p class="text-center"> You can perform more functions than the anonymous accounts. <br>Some of these functions are:</p>
+
+  <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+    <div class="col-md-12 text-center">
+      <h3 class="p-4">You can create your own class</h3>
+      <a href="{% url 'courses:create_class' %}" class="btn btn-outline-primary m-4">
+        Create class</a>
+    </div>
+<!--     <div class="col-md-8">
+      <img class="img-fluid w-100" src="{% static '' %}" alt="">
+    </div> -->
+  </div>
+
+  <div data-aos="fade-left" class="row mt-4 mb-4 bg-light">
+<!--     <div class="col-md-8">
+      <img class="img-fluid w-100" src="{% static '' %}" alt="">
+    </div> -->
+
+    <div class="col-md-12 text-center">
+      <h3 class="p-4">You can create your own subjects</h3>
+      <a href="{% url 'courses:create_subject' %}" class="btn btn-outline-primary m-4">Create the subject</a>
+    </div>
+  </div>
+
+  <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+    <div class="col-md-12 text-center">
+      <h3 class="p-4">
+        You can upload your own lessons and videos.</h3>
+      <a href="{% url 'courses:create_lesson' %}" class="btn btn-outline-primary m-4">Create Lessons</a>
+    </div>
+<!--     <div class="col-md-8">
+      <img class="img-fluid w-100" src="{% static '' %}" alt="">
+    </div> -->
+  </div>
+</div>
+
+{% else %}
+<section data-aos="zoom-out" class="signup-section spad">
+  <div class="signup-bg set-bg" data-setbg="{% static 'webuni/img/signup-bg_10.svg' %}"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="signup-warp">
+          <div class="section-title text-white text-left">
+            <h2>Register as a teacher</h2>
+            <p>To register as a teacher on the platform you must complete the following fields and then you will have
+              full access to upload courses and videos.</p>
+
+          </div>
+          <!-- signup form -->
+          <form action="/kerkesa/" method="post" class="signup-form">{% csrf_token %}
+            <input type="text" placeholder="Your Name" name="name">
+            <input type="text" placeholder="Email" name="e-mail">
+            <input type="text" placeholder="Mobile Number" name="phone">
+            <button class="site-btn">Send Request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %}
+<!-- signup section end -->
+{% else %}
+{% endif %}
+
+{% endblock content %}
