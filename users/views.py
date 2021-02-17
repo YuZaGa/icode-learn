@@ -7,14 +7,13 @@ from users.models import Kerkesat
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-#from memberships.models import Membership, UserMembership, Subscription
+from memberships.models import Membership, UserMembership, Subscription
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 # Create your views here.
 
-
-""" def get_user_membership(request):
+def get_user_membership(request):
     user_membership_qs = UserMembership.objects.filter(user=request.user)
     if user_membership_qs.exists():
         return user_membership_qs.first()
@@ -27,7 +26,7 @@ def get_user_subscription(request):
     if user_subscription_qs.exists():
         user_subscription = user_subscription_qs.first()
         return user_subscription
-    return None """
+    return None 
 
 
 @login_required

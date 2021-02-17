@@ -3,7 +3,9 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "List of complete exams" %}</h2>
+<div style="padding: 30px;">
+
+	<h2>{% trans "List of complete exams" %}</h2>
     {% if sitting_list %}
 
 		<table class="table table-bordered table-striped">
@@ -51,4 +53,5 @@
     {% else %}
         <p>{% trans "There are no matching quizzes" %}.</p>
     {% endif %}
+</div>
 {% endblock %}

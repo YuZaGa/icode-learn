@@ -1,1 +1,1 @@
-web: gunicorn Coursera.wsgi
+web: gunicorn icode.wsgi

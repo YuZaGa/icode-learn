@@ -65,9 +65,9 @@
 {% endif %}
 <!-- course section end -->
 
-{% if request.user.is_authenticated %}
+<!-- {% if request.user.is_authenticated %}
 
-<!-- signup section -->
+
 {% if request.user.profile.is_teacher == True %}
 <div class="container">
   <h1 class="text-center">Your account has contributor access</h1><br>
@@ -79,15 +79,11 @@
       <a href="{% url 'courses:create_class' %}" class="btn btn-outline-primary m-4">
         Create class</a>
     </div>
-<!--     <div class="col-md-8">
-      <img class="img-fluid w-100" src="{% static '' %}" alt="">
-    </div> -->
+
   </div>
 
   <div data-aos="fade-left" class="row mt-4 mb-4 bg-light">
-<!--     <div class="col-md-8">
-      <img class="img-fluid w-100" src="{% static '' %}" alt="">
-    </div> -->
+
 
     <div class="col-md-12 text-center">
       <h3 class="p-4">You can create your own subjects</h3>
@@ -101,9 +97,7 @@
         You can upload your own lessons and videos.</h3>
       <a href="{% url 'courses:create_lesson' %}" class="btn btn-outline-primary m-4">Create Lessons</a>
     </div>
-<!--     <div class="col-md-8">
-      <img class="img-fluid w-100" src="{% static '' %}" alt="">
-    </div> -->
+
   </div>
 </div>
 
@@ -120,7 +114,7 @@
               full access to upload courses and videos.</p>
 
           </div>
-          <!-- signup form -->
+          
           <form action="/kerkesa/" method="post" class="signup-form">{% csrf_token %}
             <input type="text" placeholder="Your Name" name="name">
             <input type="text" placeholder="Email" name="e-mail">
@@ -134,7 +128,7 @@
 </section>
 
 {% endif %}
-<!-- signup section end -->
+signup section end -->
 {% else %}
 {% endif %}
 

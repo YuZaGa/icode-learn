@@ -3,21 +3,29 @@
 {% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
+<div style="padding: 30px;"> 
+  <h1>{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
 
+
+ <div class="conatainer">
   {% with object_list as quizzes %}
-    {% if quizzes %}
-        <ul>
-        {% for quiz in quizzes %}
-            <li>
-			  <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
-				{{ quiz.title }}
-			  </a>
-			</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>{% trans "There are no quizzes" %}</p>
-    {% endif %}
-  {% endwith %}
+  {% if quizzes %}
+      <ul>
+      {% for quiz in quizzes %}
+          <li>
+      <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+      {{ quiz.title }}
+      </a>
+    </li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>{% trans "There are no quizzes" %}</p>
+  {% endif %}
+{% endwith %}
+ </div>
+
+</div>
+
+
 {% endblock %}

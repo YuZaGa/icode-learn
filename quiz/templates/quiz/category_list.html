@@ -3,7 +3,9 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "Category list" %}</h2>
+
+<div style="padding: 30px;">
+  <h2>{% trans "Category list" %}</h2>
 
 <ul>
   {% for cat in category_list %}
@@ -14,5 +16,6 @@
   </li>
   {% endfor %}
 </ul>
+</div>
 
 {% endblock %}
