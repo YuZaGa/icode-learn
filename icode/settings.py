@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'multichoice',
     'true_false',
 	'essay',
+    'adaptive',
 ]
 
 MIDDLEWARE = [

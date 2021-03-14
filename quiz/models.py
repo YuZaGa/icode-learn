@@ -562,8 +562,12 @@ class Question(models.Model):
     sub_category = models.ForeignKey(SubCategory,
                                      verbose_name=_("Sub-Category"),
                                      blank=True,
-                                     null=True,
+                                     null=True, 
                                      on_delete=models.CASCADE)
+
+    difficulty = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name=_("Difficulty"),
+        help_text=_("Diffficulty level for the questions"))
 
     figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
                                blank=True,
@@ -592,3 +596,4 @@ class Question(models.Model):
 
     def __str__(self):
         return self.content
+ 

@@ -1,4 +1,5 @@
 import secrets
+import math
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, View
 from django.contrib.auth.decorators import login_required, permission_required
@@ -7,7 +8,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView
 
-
+from django.core.exceptions import ObjectDoesNotExist
 
 
 from courses.models import Subject, Lesson, Klasa
@@ -19,9 +20,80 @@ from django.contrib import messages
 from .forms import KlasaForm, SubjectForm, TeacherForm
 from django.utils.decorators import method_decorator
 
+from .models import QuizProfile, Question, AttemptedQuestion
+
+#-----------------------------------------------Adaptive---------------------------------------
+def AdaptiveDetailView(request):
+    context = {}
+    return render(request, 'courses/ada-dashboard.html', context=context)
 
 
+def AdaptiveQuizDetailView(request):
+    context = {}
+    return render(request, 'courses/take-quiz.html', context=context)
 
+
+def leaderboard(request):
+    
+    top_quiz_profiles = QuizProfile.objects.order_by('-total_score')[:500]
+    top_ip = QuizProfile.objects.order_by('-ip')[:500]
+    total_count = top_quiz_profiles.count()
+    context = {
+        'top_quiz_profiles': top_quiz_profiles,
+        'total_count': total_count,
+        'top_ip' : top_ip,
+    }
+    return render(request, 'courses/leaderboard.html', context=context)
+
+
+@login_required()
+def play(request):
+    quiz_profile, created = QuizProfile.objects.get_or_create(user=request.user)
+    pro = round(quiz_profile.progress(),3)
+    ip = quiz_profile.ip
+
+    if request.method == 'POST':
+        question_pk = request.POST.get('question_pk')
+
+        attempted_question = quiz_profile.attempts.select_related('question').filter(question__pk=question_pk).first()
+
+        choice_pk = request.POST.get('choice_pk')
+
+        try:
+            selected_choice = attempted_question.question.choices.get(pk=choice_pk)
+        except ObjectDoesNotExist:
+            raise Http404
+
+        quiz_profile.evaluate_attempt(attempted_question, selected_choice)
+        ip = quiz_profile.evaluate_ip(attempted_question, selected_choice)
+
+        return redirect(attempted_question)
+
+    else:
+        question = quiz_profile.get_new_question()
+        if question is not None:
+            quiz_profile.create_attempt(question)
+
+        context = {
+            'question': question,
+            'pro' : pro,
+            'ip' : ip,
+        }
+
+        return render(request, 'courses/play.html', context=context)
+
+
+@login_required()
+def submission_result(request, attempted_question_pk):
+    attempted_question = get_object_or_404(AttemptedQuestion, pk=attempted_question_pk)
+    context = {
+        'attempted_question': attempted_question,
+    }
+
+    return render(request, 'courses/submission_result.html', context=context)
+
+
+#-----------------------------------------------Adaptive---------------------------------------
 
 
 
@@ -451,6 +523,8 @@ class CourseDetailView(DetailView):
     context_object_name = 'course'
     template_name = 'courses/course_detail.html'
     model = Subject
+
+
 
 
 class LessonDetailView(View, LoginRequiredMixin):

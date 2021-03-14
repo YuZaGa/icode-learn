@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if question is None %}
+
+<div class="container" style="text-align: center;">
+  <div class="jumbotron my-4" >
+    <h1> You have already answered all of our questions. </h1>
+    <a href="{% url 'courses:leaderboard' %}" class="btn btn-lg btn-info"><i class="fa fa-trophy" aria-hidden="true"></i> See the leaderboard here <i class="fa fa-trophy" aria-hidden="true"></i></a>
+   
+      <br><br>
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="{{ pro }}"
+         aria-valuemin="0" aria-valuemax="100" style="width:{{ pro }}%">
+         Progress {{ pro }} %
+        </div>
+      </div>
+     <br>
+      <a class="btn btn-sm btn-info">Proficiency Rating : {{ ip }}</a>
+   
+  </div>
+</div>
+
+<br>
+
+{% else %}
+
+<div class="container" style="text-align: center;">
+  <div class="jumbotron my-4">
+
+    <h3 class="text-info">{{ question.html|safe }}</h3>
+    {% if question.figure %}
+	  <img src="{{ question.figure.url }}" alt="{{ question.content }}" />
+    <br>
+    {% endif %}
+    <form class="form" action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="question_pk" value="{{ question.pk }}">
+        <br>
+        {% for choice in question.choices.all %}
+          <div class="form-check mx-4">
+            <input class="form-check-input" type="radio" name="choice_pk" id="choice-{{ forloop.counter }}" value="{{ choice.pk }}">
+            <label class="form-check-label" for="choice-{{ forloop.counter }}">
+              {{ choice.html|safe }}
+            </label>
+          </div>
+
+        {% endfor %}
+        <input class="btn btn-info btn-lg" type="submit" value="Submit">  
+    </form>
+    <br>
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="{{ pro }}"
+       aria-valuemin="0" aria-valuemax="100" style="width:{{ pro }}%">
+       Progress {{ pro }} %
+      </div>
+    </div>
+    <br>
+    <a class="btn btn-sm btn-info">Proficiency Rating : {{ ip }}</a>
+  </div>
+</div>
+{% endif %}
+
+{% endblock content %}

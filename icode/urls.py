@@ -32,6 +32,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     # path('__debug__/', include('debug_toolbar.urls')),
     path('', include('quiz.urls')), 
+    path('adaptive/', include('adaptive.urls')), 
 ]
 
 

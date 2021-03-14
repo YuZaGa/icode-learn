@@ -2,17 +2,17 @@ from django.urls import path
 from django.contrib.auth.decorators import login_required
 try:
     from django.conf.urls import url
-except ImportError:
+except ImportError: 
     from django.urls import r
 
 from quiz.views import QuizListView, CategoriesListView, \
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList, \
     QuizMarkingDetail, QuizDetailView, QuizTake
 
-
+from . import views
 from users.views import Profile, kerkesa
 
-from courses.views import HomeView, AboutView,ErrorView, ContactView, CourseListView, CourseDetailView, LessonDetailView, SearchView, create_class, create_subject, create_lesson
+from courses.views import HomeView, AboutView,ErrorView, ContactView, CourseListView, CourseDetailView, LessonDetailView, SearchView, create_class, create_subject, create_lesson,AdaptiveDetailView,AdaptiveQuizDetailView,leaderboard,play,submission_result
 
 app_name = 'courses'
 
@@ -22,6 +22,14 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('error/', ErrorView.as_view(), name='error'),
+
+    path('adaptive/', views.AdaptiveDetailView, name='adaptive'),
+    path('takequiz/', views.AdaptiveQuizDetailView, name='takequiz'),
+
+    url(r'^play/$', views.play, name='play'),
+    url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
+    url(r'^submission-result/(?P<attempted_question_pk>\d+)/', views.submission_result, name='submission_result'),
+
     path('courses/<int:category>', CourseListView, name='course_list'),
     path('courses/<slug>/', login_required(CourseDetailView.as_view()),
          name='course_detail'),

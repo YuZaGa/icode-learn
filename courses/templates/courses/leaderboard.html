@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %} Let's Quiz | Leaderboard {% endblock title %}
+{% block content %}
+<div class="container" style="text-align: center;">
+
+    <h1 class="text-center my-4"><span class="badge badge-info"><i class="fa fa-trophy" aria-hidden="true"></i> TOP {{ total_count }} PLAYERS <i class="fa fa-trophy" aria-hidden="true"></i></span></h1>
+    <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Score
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Username</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for quiz_profile in top_quiz_profiles %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ quiz_profile.user.username }}</td>
+                            <td>{{ quiz_profile.total_score }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Proficiency
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Username</th>
+                        <th>Proficiency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in top_ip %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ m.user.username }}</td>
+                        <td>{{ m.ip }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}

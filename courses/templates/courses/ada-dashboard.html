@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- Perfect Scrollbar -->
+    <link type="text/css" href="{% static 'assets/vendor/perfect-scrollbar.css' %}" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Material Design Icons -->
+    <link type="text/css" href="{% static 'assets/css/vendor-material-icons.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-material-icons.rtl.css' %}" rel="stylesheet">
+
+    <!-- Font Awesome FREE Icons -->
+    <link type="text/css" href="{% static 'assets/css/vendor-fontawesome-free.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-fontawesome-free.rtl.css' %}" rel="stylesheet">
+
+    <!-- ion Range Slider -->
+    <link type="text/css" href="{% static 'assets/css/vendor-ion-rangeslider.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-ion-rangeslider.rtl.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="layout-fixed layout-sticky-subnav">
+    <div class="preloader"></div>
+
+    <!-- Header Layout -->
+    <div class="mdk-header-layout js-mdk-header-layout">
+
+        <!-- Header -->
+
+        <div id="header" class="mdk-header bg-dark js-mdk-header m-0" data-fixed data-effects="waterfall">
+            <div class="mdk-header__content">
+
+                <div class="navbar navbar-expand-sm navbar-main navbar-dark bg-primary pl-md-0 pr-0" id="navbar" data-primary>
+                    <div class="container">
+                        <ul class="ml-auto nav navbar-nav mr-2 d-none d-lg-flex">
+                     
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item active">
+                                <a href="{% url 'courses:home' %}" class="nav-link active">Home</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{% url 'courses:leaderboard' %}" class="nav-link active">Leaderboard</a>
+                            </li>
+                     
+
+                 
+                 
+                        </ul>
+
+                  
+                        
+
+                      
+
+                        <div class="dropdown">
+                           
+                            {% if request.user.is_authenticated %}
+                            <a href="#account_menu" class="dropdown-toggle navbar-toggler navbar-toggler-dashboard border-left d-flex align-items-center ml-navbar" data-toggle="dropdown">
+                           
+                                <span class="ml-1 d-flex-inline">
+                                    <span class="text-light">{{request.user.username}}</span>
+                                </span>
+                            </a>
+                            
+                            <div id="company_menu" class="dropdown-menu dropdown-menu-left navbar-company-menu">
+             
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item d-flex align-items-center py-2" href="{% url 'courses:profile' %}">
+                                    <span class="material-icons mr-2">account_circle</span> Edit Account
+                                </a>
+                                {% if request.user.is_superuser %}
+                                <a class="dropdown-item d-flex align-items-center py-2" href="{% url 'admin:index' %}">
+                                    <span class="material-icons mr-2">settings</span> Settings
+                                </a>
+								{% else %}
+
+								{% endif %}
+                              
+                                <a class="dropdown-item d-flex align-items-center py-2" href="{% url 'account_logout' %}">
+                                    <span class="material-icons mr-2">exit_to_app</span> Logout
+                                </a>
+                            </div>
+                            {% else %}
+                
+                          
+                            <a class="btn btn-light btn-lg mr-1" href="{% url 'account_login' %}">Login</a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- // END Header -->
+
+        <!-- Navbar ----------------------------------------------------------------------------------------------------------------------------->
+ 
+
+    <!-- Banner ----------------------------------------------------------------------------------------------------------------------------->
+
+            <div class="home-banner text-white mb-4">
+                <div class="container page__container">
+                    <br><br><br>
+                    <h1 class="display-4 bold" data-aos="fade-up" data-aos-duration="800">Adaptive Assessement</h1>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-duration="1000">Personalized learning for you.</p>
+                    <div data-aos="fade-down" data-aos-duration="400" data-aos-delay="400" data-offset="-100">
+                        <a class="btn btn-light btn-lg mr-1" href="/courses/1">Browse Lessons</a>
+                        <a class="btn btn-success btn-lg" href="{% url 'courses:play' %}">Play</a>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="container page__container">
+
+             
+                
+
+                <div class="row card-group-row">
+
+                  
+
+
+
+                </div>
+
+                <div class="m-4 p-4">
+                    <h2 class="bold mb-1 text-center">Features &amp; Highlights</h2>
+                    <p class="lead text-muted text-center">What makes iCode awesome</p>
+                </div>
+
+                
+
+                <div class="row mb-4">
+                    <div class="col-md-6 d-flex align-items-center  flex-row-reverse" data-aos-duration="500" data-aos="fade-right">
+                        <div class="avatar avatar-xl ml-3">
+                            <span class="bg-primary border avatar-title rounded-circle text-center text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="30" height="30">
+                                    <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
+                                        <path d="M17.464,11c-3.59,0-6.5,2.91-6.5,6.5s2.91,6.5,6.5,6.5s6.5-2.91,6.5-6.5C23.96,13.912,21.052,11.004,17.464,11z M19.964,18.25h-1.5c-0.138,0-0.25,0.112-0.25,0.25V20c0,0.414-0.336,0.75-0.75,0.75s-0.75-0.336-0.75-0.75v-1.5 c0-0.138-0.112-0.25-0.25-0.25h-1.5c-0.414,0-0.75-0.336-0.75-0.75s0.336-0.75,0.75-0.75h1.5c0.138,0,0.25-0.112,0.25-0.25V15 c0-0.414,0.336-0.75,0.75-0.75s0.75,0.336,0.75,0.75v1.5c0,0.138,0.112,0.25,0.25,0.25h1.5c0.414,0,0.75,0.336,0.75,0.75 S20.378,18.25,19.964,18.25z M12.786,8.5c0-0.414-0.336-0.75-0.75-0.75h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75h6 C12.45,9.25,12.786,8.914,12.786,8.5z M6.036,14.749c-0.414,0-0.75,0.336-0.75,0.75c0,0.414,0.336,0.75,0.75,0.75h3.405 c0.117,0,0.217-0.085,0.237-0.2c0.06-0.323,0.139-0.641,0.238-0.954c0.036-0.116-0.006-0.345-0.333-0.345L6.036,14.749z M9.722,19.194c-0.021-0.115-0.121-0.199-0.238-0.2H3.536c-0.276,0-0.5-0.224-0.5-0.5V5.5c0-0.276,0.224-0.5,0.5-0.5h11 c0.276,0,0.5,0.224,0.5,0.5v4.08c-0.002,0.136,0.107,0.249,0.243,0.251c0.019,0,0.038-0.002,0.057-0.006 c0.814-0.154,1.637-0.252,2.464-0.293c0.132-0.008,0.235-0.118,0.234-0.25V3.5c0-0.828-0.672-1.5-1.5-1.5h-4 c-0.086,0-0.165-0.046-0.208-0.121C11.25,0.06,8.903-0.543,7.084,0.533C6.529,0.861,6.066,1.324,5.738,1.879 C5.696,1.953,5.619,1.999,5.534,2h-4c-0.828,0-1.5,0.672-1.5,1.5v17c0,0.828,0.672,1.5,1.5,1.5h8.94 c0.136,0,0.246-0.11,0.246-0.246c0-0.047-0.014-0.093-0.039-0.133C10.23,20.87,9.906,20.05,9.722,19.194z M11.186,12.654 c0.327-0.427,0.695-0.82,1.1-1.174c0.09-0.079-0.01-0.231-0.245-0.231h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75H11 C11.073,12.747,11.142,12.712,11.186,12.654z" stroke="none" fill="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <strong>3x Layouts</strong>
+                            <p class="m-0">Multiple layouts included</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center" data-aos-duration="500" data-aos="fade-left">
+                        <div class="avatar avatar-xl mr-3">
+                            <span class="bg-primary border avatar-title rounded-circle text-center text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="30" height="30">
+                                    <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
+                                        <path d="M17.464,11c-3.59,0-6.5,2.91-6.5,6.5s2.91,6.5,6.5,6.5s6.5-2.91,6.5-6.5C23.96,13.912,21.052,11.004,17.464,11z M19.964,18.25h-1.5c-0.138,0-0.25,0.112-0.25,0.25V20c0,0.414-0.336,0.75-0.75,0.75s-0.75-0.336-0.75-0.75v-1.5 c0-0.138-0.112-0.25-0.25-0.25h-1.5c-0.414,0-0.75-0.336-0.75-0.75s0.336-0.75,0.75-0.75h1.5c0.138,0,0.25-0.112,0.25-0.25V15 c0-0.414,0.336-0.75,0.75-0.75s0.75,0.336,0.75,0.75v1.5c0,0.138,0.112,0.25,0.25,0.25h1.5c0.414,0,0.75,0.336,0.75,0.75 S20.378,18.25,19.964,18.25z M12.786,8.5c0-0.414-0.336-0.75-0.75-0.75h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75h6 C12.45,9.25,12.786,8.914,12.786,8.5z M6.036,14.749c-0.414,0-0.75,0.336-0.75,0.75c0,0.414,0.336,0.75,0.75,0.75h3.405 c0.117,0,0.217-0.085,0.237-0.2c0.06-0.323,0.139-0.641,0.238-0.954c0.036-0.116-0.006-0.345-0.333-0.345L6.036,14.749z M9.722,19.194c-0.021-0.115-0.121-0.199-0.238-0.2H3.536c-0.276,0-0.5-0.224-0.5-0.5V5.5c0-0.276,0.224-0.5,0.5-0.5h11 c0.276,0,0.5,0.224,0.5,0.5v4.08c-0.002,0.136,0.107,0.249,0.243,0.251c0.019,0,0.038-0.002,0.057-0.006 c0.814-0.154,1.637-0.252,2.464-0.293c0.132-0.008,0.235-0.118,0.234-0.25V3.5c0-0.828-0.672-1.5-1.5-1.5h-4 c-0.086,0-0.165-0.046-0.208-0.121C11.25,0.06,8.903-0.543,7.084,0.533C6.529,0.861,6.066,1.324,5.738,1.879 C5.696,1.953,5.619,1.999,5.534,2h-4c-0.828,0-1.5,0.672-1.5,1.5v17c0,0.828,0.672,1.5,1.5,1.5h8.94 c0.136,0,0.246-0.11,0.246-0.246c0-0.047-0.014-0.093-0.039-0.133C10.23,20.87,9.906,20.05,9.722,19.194z M11.186,12.654 c0.327-0.427,0.695-0.82,1.1-1.174c0.09-0.079-0.01-0.231-0.245-0.231h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75H11 C11.073,12.747,11.142,12.712,11.186,12.654z" stroke="none" fill="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </div>
+                        <div>
+                            <strong>Quizzes</strong>
+                            <p class="m-0">Quiz management pages</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6 d-flex align-items-center  flex-row-reverse" data-aos-duration="500" data-aos="fade-right">
+                        <div class="avatar avatar-xl ml-3">
+                            <span class="bg-primary border avatar-title rounded-circle text-center text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="30" height="30">
+                                    <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
+                                        <path d="M17.464,11c-3.59,0-6.5,2.91-6.5,6.5s2.91,6.5,6.5,6.5s6.5-2.91,6.5-6.5C23.96,13.912,21.052,11.004,17.464,11z M19.964,18.25h-1.5c-0.138,0-0.25,0.112-0.25,0.25V20c0,0.414-0.336,0.75-0.75,0.75s-0.75-0.336-0.75-0.75v-1.5 c0-0.138-0.112-0.25-0.25-0.25h-1.5c-0.414,0-0.75-0.336-0.75-0.75s0.336-0.75,0.75-0.75h1.5c0.138,0,0.25-0.112,0.25-0.25V15 c0-0.414,0.336-0.75,0.75-0.75s0.75,0.336,0.75,0.75v1.5c0,0.138,0.112,0.25,0.25,0.25h1.5c0.414,0,0.75,0.336,0.75,0.75 S20.378,18.25,19.964,18.25z M12.786,8.5c0-0.414-0.336-0.75-0.75-0.75h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75h6 C12.45,9.25,12.786,8.914,12.786,8.5z M6.036,14.749c-0.414,0-0.75,0.336-0.75,0.75c0,0.414,0.336,0.75,0.75,0.75h3.405 c0.117,0,0.217-0.085,0.237-0.2c0.06-0.323,0.139-0.641,0.238-0.954c0.036-0.116-0.006-0.345-0.333-0.345L6.036,14.749z M9.722,19.194c-0.021-0.115-0.121-0.199-0.238-0.2H3.536c-0.276,0-0.5-0.224-0.5-0.5V5.5c0-0.276,0.224-0.5,0.5-0.5h11 c0.276,0,0.5,0.224,0.5,0.5v4.08c-0.002,0.136,0.107,0.249,0.243,0.251c0.019,0,0.038-0.002,0.057-0.006 c0.814-0.154,1.637-0.252,2.464-0.293c0.132-0.008,0.235-0.118,0.234-0.25V3.5c0-0.828-0.672-1.5-1.5-1.5h-4 c-0.086,0-0.165-0.046-0.208-0.121C11.25,0.06,8.903-0.543,7.084,0.533C6.529,0.861,6.066,1.324,5.738,1.879 C5.696,1.953,5.619,1.999,5.534,2h-4c-0.828,0-1.5,0.672-1.5,1.5v17c0,0.828,0.672,1.5,1.5,1.5h8.94 c0.136,0,0.246-0.11,0.246-0.246c0-0.047-0.014-0.093-0.039-0.133C10.23,20.87,9.906,20.05,9.722,19.194z M11.186,12.654 c0.327-0.427,0.695-0.82,1.1-1.174c0.09-0.079-0.01-0.231-0.245-0.231h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75H11 C11.073,12.747,11.142,12.712,11.186,12.654z" stroke="none" fill="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <strong>3x Layouts</strong>
+                            <p class="m-0">Multiple layouts included</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center" data-aos-duration="500" data-aos="fade-left">
+                        <div class="avatar avatar-xl mr-3">
+                            <span class="bg-primary border avatar-title rounded-circle text-center text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="30" height="30">
+                                    <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
+                                        <path d="M17.464,11c-3.59,0-6.5,2.91-6.5,6.5s2.91,6.5,6.5,6.5s6.5-2.91,6.5-6.5C23.96,13.912,21.052,11.004,17.464,11z M19.964,18.25h-1.5c-0.138,0-0.25,0.112-0.25,0.25V20c0,0.414-0.336,0.75-0.75,0.75s-0.75-0.336-0.75-0.75v-1.5 c0-0.138-0.112-0.25-0.25-0.25h-1.5c-0.414,0-0.75-0.336-0.75-0.75s0.336-0.75,0.75-0.75h1.5c0.138,0,0.25-0.112,0.25-0.25V15 c0-0.414,0.336-0.75,0.75-0.75s0.75,0.336,0.75,0.75v1.5c0,0.138,0.112,0.25,0.25,0.25h1.5c0.414,0,0.75,0.336,0.75,0.75 S20.378,18.25,19.964,18.25z M12.786,8.5c0-0.414-0.336-0.75-0.75-0.75h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75h6 C12.45,9.25,12.786,8.914,12.786,8.5z M6.036,14.749c-0.414,0-0.75,0.336-0.75,0.75c0,0.414,0.336,0.75,0.75,0.75h3.405 c0.117,0,0.217-0.085,0.237-0.2c0.06-0.323,0.139-0.641,0.238-0.954c0.036-0.116-0.006-0.345-0.333-0.345L6.036,14.749z M9.722,19.194c-0.021-0.115-0.121-0.199-0.238-0.2H3.536c-0.276,0-0.5-0.224-0.5-0.5V5.5c0-0.276,0.224-0.5,0.5-0.5h11 c0.276,0,0.5,0.224,0.5,0.5v4.08c-0.002,0.136,0.107,0.249,0.243,0.251c0.019,0,0.038-0.002,0.057-0.006 c0.814-0.154,1.637-0.252,2.464-0.293c0.132-0.008,0.235-0.118,0.234-0.25V3.5c0-0.828-0.672-1.5-1.5-1.5h-4 c-0.086,0-0.165-0.046-0.208-0.121C11.25,0.06,8.903-0.543,7.084,0.533C6.529,0.861,6.066,1.324,5.738,1.879 C5.696,1.953,5.619,1.999,5.534,2h-4c-0.828,0-1.5,0.672-1.5,1.5v17c0,0.828,0.672,1.5,1.5,1.5h8.94 c0.136,0,0.246-0.11,0.246-0.246c0-0.047-0.014-0.093-0.039-0.133C10.23,20.87,9.906,20.05,9.722,19.194z M11.186,12.654 c0.327-0.427,0.695-0.82,1.1-1.174c0.09-0.079-0.01-0.231-0.245-0.231h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75H11 C11.073,12.747,11.142,12.712,11.186,12.654z" stroke="none" fill="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </div>
+                        <div>
+                            <strong>Quizzes</strong>
+                            <p class="m-0">Quiz management pages</p>
+                        </div>
+                    </div>
+                </div>
+
+      
+
+
+            </div>
+
+        </div>
+        <!-- // END Header Layout Content -->
+        
+        </div>
+        <!-- // END Header Layout -->
+    </div>    
+
+  <!-- Footer ------------------------------------------------------------------------------------------------------------------------ -->
+  <script src="{% static 'https://unpkg.com/aos@2.3.1/dist/aos.js' %}"></script>
+
+  <script>
+      AOS.init();
+  </script>
+
+
+
+  <div class="bg-dark text-white" id="footer">
+  </div>
+
+
+
+<!-- jQuery -->
+<script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+<!-- Perfect Scrollbar -->
+<script src="{% static 'assets/vendor/perfect-scrollbar.min.js' %}"></script>
+
+<!-- DOM Factory -->
+<script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+
+<!-- MDK -->
+<script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+<!-- Range Slider -->
+<script src="{% static 'assets/vendor/ion.rangeSlider.min.js' %}"></script>
+<script src="{% static 'assets/js/ion-rangeslider.js' %}"></script>
+
+<!-- App -->
+<script src="{% static 'assets/js/toggle-check-all.js' %}"></script>
+<script src="{% static 'assets/js/check-selected-row.js' %}"></script>
+<script src="{% static 'assets/js/dropdown.js' %}"></script>
+<script src="{% static 'assets/js/sidebar-mini.js' %}"></script>
+<script src="{% static 'assets/js/app.j' %}s"></script>
+
+<!-- App Settings (safe to remove) -->
+<script src="{% static 'assets/js/app-settings.js' %}"></script>
+
+
+
+
+</body>
+
+</html>
