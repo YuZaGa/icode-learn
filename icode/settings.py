@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    #'django.contrib.staticfiles',
     'django.contrib.sites',
     'allauth.account',
     'allauth.socialaccount',
@@ -55,6 +55,9 @@ INSTALLED_APPS = [
     'true_false',
 	'essay',
     'adaptive',
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -213,3 +216,13 @@ else:
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 django_heroku.settings(locals())
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'yuzaga',
+    'API_KEY': '179748487429254',
+    'API_SECRET': 'IJw-ig_1wSqzdKut-trYPO4BGDs'
+}
+
+
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
