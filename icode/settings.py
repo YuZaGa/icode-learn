@@ -216,7 +216,7 @@ else:
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 django_heroku.settings(locals())
-
+''' 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'yuzaga',
     'API_KEY': '179748487429254',
@@ -225,4 +225,4 @@ CLOUDINARY_STORAGE = {
 
 
 MEDIA_URL = '/media/'  # or any prefix you choose
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' '''

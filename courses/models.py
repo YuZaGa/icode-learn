@@ -12,7 +12,7 @@ class Klasa(models.Model):  # Klasa=Class
     description = models.TextField(
         max_length=200, null=True)  # description=description
     image = models.ImageField(
-        upload_to='cat_images', default='cat_images/default.jpg')  # imazhi=image
+        upload_to='uploads/', default='cat_images/default.jpg')  # imazhi=image
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -27,7 +27,7 @@ class Subject(models.Model):  # Lendet=subject
     description = models.TextField(max_length=400)  # description
     created_at = models.DateTimeField(auto_now=True)  # created_at
     thumbnail = models.ImageField(
-        upload_to='course_images', default='default.jpg')  # imazhi_lendes=thumbnail
+        upload_to='uploads/', default='default.jpg')  # imazhi_lendes=thumbnail
 
     def __str__(self):
         return self.title
@@ -63,7 +63,7 @@ class Question(TimeStampedModel):
     ALLOWED_NUMBER_OF_CORRECT_CHOICES = 1
 
     html = models.TextField(_('Question Text'))
-    figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
+    figure = models.ImageField(upload_to='uploads/',
                                blank=True,
                                null=True,
                                verbose_name=_("Figure"))
