@@ -218,9 +218,9 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 django_heroku.settings(locals())
 ''' 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'yuzaga',
-    'API_KEY': '179748487429254',
-    'API_SECRET': 'IJw-ig_1wSqzdKut-trYPO4BGDs'
+    'CLOUD_NAME': '',
+    'API_KEY': '',
+    'API_SECRET': ''
 }
 
 
