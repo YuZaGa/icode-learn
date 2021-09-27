@@ -51,5 +51,5 @@ Adaptive Learning :
 
 
 
-## Addition and Modification
+## Addition and Modification 
 Due credit to people who have worked on different components of the project beforehand. **Redian Marku** , **Tom Walker**
